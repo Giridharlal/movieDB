@@ -1,0 +1,293 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0d0d0d;
+  color: #ffffff;
+}
+
+/* Movies Grid */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Movie Card */
+.movie-card {
+  text-align: center;
+  background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
+  padding: 15px;
+  border-radius: 12px;
+  color: white;
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Movie Image */
+.movie-card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* Movie Title */
+.movie-card h3 {
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+/* Movie Rating */
+.movie-card p {
+  font-size: 18px;
+  color: #ffcc00;
+}
+
+/* Details Button */
+.details-btn button {
+  background: linear-gradient(135deg, #ffcc00, #ff9900);
+  color: #121212;
+  font-size: 16px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out;
+}
+
+.details-btn button:hover {
+  background: linear-gradient(135deg, #ff9900, #ff6600);
+}
+
+/* Cast Section */
+.cast-heading {
+  text-align: center;
+  margin: 25px 0;
+  font-size: 26px;
+  color: #ffcc00;
+}
+
+.cast-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Cast Card */
+.cast-card {
+  width: 180px;
+  background: #ffcc00;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  text-align: center;
+}
+
+.cast-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Cast Name */
+.cast-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Cast Role */
+.cast-role {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Movie Details Page */
+.movie-details-container {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  gap: 20px; /* Space between image and text */
+  max-width: 850px;
+  margin: 40px auto;
+  padding: 25px;
+  text-align: left;
+  background: linear-gradient(135deg, #1a1a1a, #292929);
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Movie Title */
+.movie-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #ffcc00;
+}
+
+/* Movie Poster */
+.movie-poster {
+  width: 450px;
+  height: 450px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* Movie Overview */
+.movie-overview {
+  font-size: 18px;
+  color: #f2f2f2;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* View Cast Button */
+.view-cast-button {
+  display: inline-block;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #ffcc00, #ff9900);
+  color: #121111;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.3s ease-in-out;
+}
+
+.view-cast-button:hover {
+  background: linear-gradient(135deg, #ff9900, #ff6600);
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #121212;
+  padding: 15px 30px;
+  color: white;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  color: #ffcc00;
+  letter-spacing: 1px;
+}
+
+/* Navbar Links */
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 22px;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar ul li a:hover {
+  color: #ffcc00;
+}
+
+.navbar ul li a:active {
+  color: #ff9900; /* Color when clicked */
+}
+
+.navbar ul li .active h1 {
+  color: #ffcc00; /* Color for active page */
+  font-weight: bold;
+  border-bottom: 2px solid #ffcc00; /* Optional underline */
+}
+
+/* Search Box */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-box input {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ffcc00;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  outline: none;
+}
+
+.search-box input::placeholder {
+  color: #bbb;
+}
+
+.search-box button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #ffcc00, #ff9900);
+  color: #121212;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.search-box button:hover {
+  background: linear-gradient(135deg, #ff9900, #ff6600);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .navbar ul {
+    margin: 10px 0;
+    gap: 12px;
+  }
+
+  .search-box {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .search-box input {
+    width: 60%;
+  }
+}
+
+/* Movie Grid for Smaller Screens */
+@media (max-width: 768px) {
+  .movie-card {
+    padding: 12px;
+  }
+
+  .movie-card h3 {
+    font-size: 16px;
+  }
+
+  .details-btn button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
