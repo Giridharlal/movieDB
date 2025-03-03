@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
+import LoadingPage from '../components/LoadingPage'
 import {fetchMovieCast, IMAGE_BASE_URL} from '../api'
-import Loader from 'react-loader-spinner'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -17,15 +17,15 @@ const MovieCast = () => {
 
   useEffect(() => {
     const getCast = async () => {
-      setApiStatus(apiStatusConstants.inProgress) // Set loading state
+      setApiStatus(apiStatusConstants.inProgress)
 
       try {
         const data = await fetchMovieCast(id)
         setCast(data.cast)
-        setApiStatus(apiStatusConstants.success) // Set success state
+        setApiStatus(apiStatusConstants.success)
       } catch (error) {
         console.error('Error fetching cast details:', error)
-        setApiStatus(apiStatusConstants.failure) // Set failure state
+        setApiStatus(apiStatusConstants.failure)
       }
     }
 
@@ -35,11 +35,7 @@ const MovieCast = () => {
   const renderUI = () => {
     switch (apiStatus) {
       case apiStatusConstants.inProgress:
-        return (
-          <div className="loader-container">
-            <Loader type="ThreeDots" color="#ffcc00" height="50" width="50" />
-          </div>
-        )
+        return <LoadingPage />
 
       case apiStatusConstants.success:
         return (

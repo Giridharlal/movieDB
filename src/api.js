@@ -2,21 +2,12 @@ const API_KEY = '1eb91f3510a3700f59d03ecc3d444c10'
 
 export const API_URL = 'https://api.themoviedb.org/3'
 export const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'
-const MovieCast =
-  'https://api.themoviedb.org/3/movie/539972/credits?api_key=1eb91f3510a3700f59d03ecc3d444c10&language=en-US'
-const POPULAR_MOVIES_API = `https://api.themoviedb.org/3/movie/top_rated?api_key=1eb91f3510a3700f59d03ecc3d444c10&language=en-US&page=1`
 
-// export const fetchMovies = async category => {
-//   const url = `https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&language=en-US&page=1`
-//   console.log(url)
-//   const response = await fetch(url)
-//   const data = await response.json()
-//   console.log(data)
-//   return data.results
-// }
+const api =
+  'https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&language=en-US&page=${page}'
 
-export const fetchMovies = async category => {
-  const url = `https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&language=en-US&page=1`
+export const fetchMovies = async (category, page) => {
+  const url = `${API_URL}/movie/${category}?api_key=${API_KEY}&language=en-US&page=${page}`
   console.log(url)
 
   try {
@@ -28,10 +19,10 @@ export const fetchMovies = async category => {
 
     const data = await response.json()
     console.log(data)
-    return data.results
+    return {movies: data.results, totalPages: data.total_pages}
   } catch (error) {
     console.error('Fetch failed:', error)
-    throw error // Propagate the error to handle it in the component
+    throw error
   }
 }
 export const fetchMovieDetails = async id => {

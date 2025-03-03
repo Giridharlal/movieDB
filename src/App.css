@@ -13,44 +13,40 @@ body {
 /* Movies Grid */
 .movies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  padding: 10px;
 }
 
 /* Movie Card */
 .movie-card {
   text-align: center;
   background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
-  padding: 15px;
-  border-radius: 12px;
+  padding: 10px;
+  border-radius: 8px;
   color: white;
-  transition:
-    transform 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out;
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease-in-out;
 }
 
 .movie-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
 }
 
 /* Movie Image */
 .movie-card img {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 /* Movie Title */
 .movie-card h3 {
-  margin: 10px 0;
-  font-size: 20px;
+  margin: 8px 0;
+  font-size: 14px;
 }
 
 /* Movie Rating */
 .movie-card p {
-  font-size: 18px;
+  font-size: 14px;
   color: #ffcc00;
 }
 
@@ -58,10 +54,10 @@ body {
 .details-btn button {
   background: linear-gradient(135deg, #ffcc00, #ff9900);
   color: #121212;
-  font-size: 16px;
-  padding: 10px 18px;
+  font-size: 14px;
+  padding: 8px 10px;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s ease-in-out;
@@ -71,57 +67,118 @@ body {
   background: linear-gradient(135deg, #ff9900, #ff6600);
 }
 
-/* Cast Section */
-.cast-heading {
-  text-align: center;
-  margin: 25px 0;
-  font-size: 26px;
+/* Navbar */
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #121212;
+  padding: 12px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
   color: #ffcc00;
 }
 
+/* Navbar Links */
+.navbar ul {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0;
+  gap: 10px;
+  background: linear-gradient(545deg, #1c1c1c, #343434);
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar ul li a:hover {
+  color: #ffcc00;
+}
+
+.navbar ul li a:active {
+  color: #ff9900; /* Color when clicked */
+}
+
+.navbar ul li .active h1 {
+  color: #ffcc00;
+  font-weight: bold;
+  border-bottom: 2px solid #ffcc00;
+}
+
+/* Search Box */
+.search-box {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.search-box input {
+  width: 70%;
+  padding: 6px;
+  font-size: 14px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid #ffcc00;
+}
+
+.search-box button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #ffcc00, #ff9900);
+  color: #121212;
+  cursor: pointer;
+}
+
+/* Cast Section */
 .cast-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  padding: 20px;
+  gap: 10px;
+  padding: 10px;
 }
 
 /* Cast Card */
 .cast-card {
-  width: 180px;
-  background: #ffcc00;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 12px;
+  width: 120px;
+  padding: 10px;
+  border-radius: 8px;
   text-align: center;
+  background: #ffcc00;
 }
 
 .cast-image {
   width: 100%;
-  height: 160px;
+  height: 100px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 /* Cast Name */
 .cast-name {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   color: #000;
 }
 
-/* Cast Role */
-.cast-role {
-  font-size: 14px;
-  color: #333;
-}
-
-/* Movie Details Page */
+/* Movie Details */
 .movie-details-container {
   display: flex;
-  align-items: center; /* Align items vertically */
-  gap: 20px; /* Space between image and text */
+  align-items: center;
+  gap: 20px;
   max-width: 850px;
   margin: 40px auto;
   padding: 25px;
@@ -155,7 +212,6 @@ body {
   line-height: 1.5;
 }
 
-/* View Cast Button */
 .view-cast-button {
   display: inline-block;
   padding: 12px 18px;
@@ -168,126 +224,85 @@ body {
   transition: background 0.3s ease-in-out;
 }
 
-.view-cast-button:hover {
-  background: linear-gradient(135deg, #ff9900, #ff6600);
-}
-
-/* Navbar */
-.navbar {
+.pagination {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  background: #121212;
-  padding: 15px 30px;
-  color: white;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
-}
-
-.logo {
-  font-size: 26px;
-  font-weight: bold;
-  color: #ffcc00;
-  letter-spacing: 1px;
-}
-
-/* Navbar Links */
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 22px;
-}
-
-.navbar ul li a {
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  font-size: 18px;
-  transition: color 0.3s ease-in-out;
-}
-
-.navbar ul li a:hover {
-  color: #ffcc00;
-}
-
-.navbar ul li a:active {
-  color: #ff9900; /* Color when clicked */
-}
-
-.navbar ul li .active h1 {
-  color: #ffcc00; /* Color for active page */
-  font-weight: bold;
-  border-bottom: 2px solid #ffcc00; /* Optional underline */
-}
-
-/* Search Box */
-.search-box {
-  display: flex;
-  align-items: center;
+  margin-top: 20px;
   gap: 10px;
 }
 
-.search-box input {
-  padding: 8px 12px;
-  font-size: 16px;
-  border: 1px solid #ffcc00;
-  border-radius: 5px;
-  background-color: transparent;
-  color: white;
-  outline: none;
-}
-
-.search-box input::placeholder {
-  color: #bbb;
-}
-
-.search-box button {
+.pagination button {
   padding: 10px 15px;
   font-size: 16px;
   border: none;
   border-radius: 5px;
-  background: linear-gradient(135deg, #ffcc00, #ff9900);
-  color: #121212;
+  background-color: #ff9900;
+  color: rgb(5, 5, 5);
   cursor: pointer;
-  transition: background 0.3s ease-in-out;
+  transition: background-color 0.3s;
 }
 
-.search-box button:hover {
-  background: linear-gradient(135deg, #ff9900, #ff6600);
+.pagination button:hover:not(:disabled) {
+  background-color: #ffcc00;
+}
+
+.pagination span {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 /* Responsive Styles */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .navbar ul {
-    margin: 10px 0;
-    gap: 12px;
-  }
-
-  .search-box {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .search-box input {
-    width: 60%;
-  }
-}
-
-/* Movie Grid for Smaller Screens */
-@media (max-width: 768px) {
-  .movie-card {
-    padding: 12px;
+@media (max-width: 480px) {
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 
   .movie-card h3 {
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .details-btn button {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+
+  .navbar ul li a:active {
+    color: #ff9900;
+  }
+
+  .navbar ul li .active h1 {
+    color: #ffcc00;
+    font-weight: bold;
+    border-bottom: 2px solid #ffcc00;
+  }
+
+  .navbar ul {
+    flex-direction: row;
+    align-items: center;
+    border: #ffcc00;
+  }
+
+  .navbar ul li a {
+    color: rgb(255, 255, 255);
     font-size: 14px;
-    padding: 8px 12px;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .search-box input {
+    width: 80%;
+  }
+
+  .movie-title {
+    font-size: 18px;
+  }
+
+  .movie-overview {
+    font-size: 12px;
+  }
+
+  .view-cast-button {
+    font-size: 12px;
+    padding: 8px 10px;
   }
 }

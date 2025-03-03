@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react'
-import Loader from 'react-loader-spinner'
 import {useParams, Link} from 'react-router-dom'
 import {searchMovies} from '../api'
 import MovieGrid from '../components/MovieGrid'
+import LoadingPage from '../components/LoadingPage'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -10,8 +10,6 @@ const apiStatusConstants = {
   failure: 'FAILURE',
   inProgress: 'IN_PROGRESS',
 }
-
-const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w200' // Base URL for posters
 
 const SearchResults = () => {
   const {query} = useParams()
@@ -39,11 +37,7 @@ const SearchResults = () => {
   const renderUI = () => {
     switch (apiStatus) {
       case apiStatusConstants.inProgress:
-        return (
-          <div data-testid="loader" className="jobs-loader-container">
-            <Loader type="ThreeDots" color="#ffcc00" height="50" width="50" />
-          </div>
-        )
+        return <LoadingPage />
 
       case apiStatusConstants.success:
         return <MovieGrid movies={movies} />

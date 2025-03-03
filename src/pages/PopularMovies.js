@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
-import Loader from 'react-loader-spinner'
 import {fetchMovies} from '../api'
 import MovieGrid from '../components/MovieGrid'
+import LoadingPage from '../components/LoadingPage'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -13,14 +13,17 @@ const apiStatusConstants = {
 const PopularMovies = () => {
   const [movies, setMovies] = useState([])
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
 
   useEffect(() => {
     const fetchData = async () => {
       setApiStatus(apiStatusConstants.inProgress) // Set status to loading
 
       try {
-        const data = await fetchMovies('popular')
-        setMovies(data)
+        const {movies, totalPages} = await fetchMovies('popular', page)
+        setMovies(movies)
+        setTotalPages(totalPages)
         setApiStatus(apiStatusConstants.success) // Set status to success
       } catch (error) {
         setApiStatus(apiStatusConstants.failure) // Set status to failure
@@ -28,19 +31,42 @@ const PopularMovies = () => {
     }
 
     fetchData()
-  }, [])
+  }, [page])
 
   const renderUI = () => {
     switch (apiStatus) {
       case apiStatusConstants.inProgress:
-        return (
-          <div data-testid="loader" className="jobs-loader-container">
-            <Loader type="ThreeDots" color="#ffcc00" height="50" width="50" />
-          </div>
-        )
+        return <LoadingPage />
 
       case apiStatusConstants.success:
-        return <MovieGrid movies={movies} />
+        return (
+          <div>
+            <MovieGrid movies={movies} />
+            <div className="pagination">
+              {page > 1 ? (
+                <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+                  Previous
+                </button>
+              ) : (
+                ''
+              )}
+              <span>
+                {' '}
+                Page {page} of {totalPages}{' '}
+              </span>
+              {page < totalPages ? (
+                <button
+                  onClick={() => setPage(page + 1)}
+                  disabled={page >= totalPages}
+                >
+                  Next
+                </button>
+              ) : (
+                ''
+              )}
+            </div>
+          </div>
+        )
 
       case apiStatusConstants.failure:
         return <p>Failed to load Popular movies. Please try again.</p>

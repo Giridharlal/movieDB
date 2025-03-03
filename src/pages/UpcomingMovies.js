@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
-import Loader from 'react-loader-spinner'
 import {fetchMovies} from '../api'
 import MovieGrid from '../components/MovieGrid'
+import LoadingPage from '../components/LoadingPage'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -16,14 +16,14 @@ const PopularMovies = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setApiStatus(apiStatusConstants.inProgress) // Set status to loading
+      setApiStatus(apiStatusConstants.inProgress)
 
       try {
         const data = await fetchMovies('upcoming')
         setMovies(data)
-        setApiStatus(apiStatusConstants.success) // Set status to success
+        setApiStatus(apiStatusConstants.success)
       } catch (error) {
-        setApiStatus(apiStatusConstants.failure) // Set status to failure
+        setApiStatus(apiStatusConstants.failure)
       }
     }
 
@@ -33,11 +33,7 @@ const PopularMovies = () => {
   const renderUI = () => {
     switch (apiStatus) {
       case apiStatusConstants.inProgress:
-        return (
-          <div data-testid="loader" className="jobs-loader-container">
-            <Loader type="ThreeDots" color="#ffcc00" height="50" width="50" />
-          </div>
-        )
+        return <LoadingPage />
 
       case apiStatusConstants.success:
         return <MovieGrid movies={movies} />
@@ -50,11 +46,7 @@ const PopularMovies = () => {
     }
   }
 
-  return (
-    <div className="popular-movies-container">
-      {renderUI()}
-    </div>
-  )
+  return <div className="popular-movies-container">{renderUI()}</div>
 }
 
 export default PopularMovies
