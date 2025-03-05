@@ -33,6 +33,26 @@ const PopularMovies = () => {
     fetchData()
   }, [page])
 
+  const renderPagination = () => (
+    <div className="pagination">
+      <button
+        type="button"
+        onClick={() => setPage(prevPage => Math.max(prevPage - 1, 1))}
+        disabled={page === 1}
+      >
+        Prev
+      </button>
+      <p>{page}</p>
+      <button
+        type="button"
+        onClick={() => setPage(prevPage => Math.min(prevPage + 1, totalPages))}
+        disabled={page >= totalPages}
+      >
+        Next
+      </button>
+    </div>
+  )
+
   const renderUI = () => {
     switch (apiStatus) {
       case apiStatusConstants.inProgress:
@@ -42,29 +62,6 @@ const PopularMovies = () => {
         return (
           <div>
             <MovieGrid movies={movies} />
-            <div className="pagination">
-              {page > 1 ? (
-                <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-                  Previous
-                </button>
-              ) : (
-                ''
-              )}
-              <span>
-                {' '}
-                Page {page} of {totalPages}{' '}
-              </span>
-              {page < totalPages ? (
-                <button
-                  onClick={() => setPage(page + 1)}
-                  disabled={page >= totalPages}
-                >
-                  Next
-                </button>
-              ) : (
-                ''
-              )}
-            </div>
           </div>
         )
 
@@ -76,7 +73,12 @@ const PopularMovies = () => {
     }
   }
 
-  return <div className="popular-movies-container">{renderUI()}</div>
+  return (
+    <div className="popular-movies-container">
+      {renderUI()}
+      {renderPagination()}
+    </div>
+  )
 }
 
 export default PopularMovies

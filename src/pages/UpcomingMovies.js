@@ -13,22 +13,45 @@ const apiStatusConstants = {
 const PopularMovies = () => {
   const [movies, setMovies] = useState([])
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
 
   useEffect(() => {
     const fetchData = async () => {
-      setApiStatus(apiStatusConstants.inProgress)
+      setApiStatus(apiStatusConstants.inProgress) // Set status to loading
 
       try {
-        const data = await fetchMovies('upcoming')
-        setMovies(data)
-        setApiStatus(apiStatusConstants.success)
+        const {movies, totalPages} = await fetchMovies('upcoming', page)
+        setMovies(movies)
+        setTotalPages(totalPages)
+        setApiStatus(apiStatusConstants.success) // Set status to success
       } catch (error) {
-        setApiStatus(apiStatusConstants.failure)
+        setApiStatus(apiStatusConstants.failure) // Set status to failure
       }
     }
 
     fetchData()
-  }, [])
+  }, [page])
+
+  const renderPagination = () => (
+    <div className="pagination">
+      <button
+        type="button"
+        onClick={() => setPage(prevPage => Math.max(prevPage - 1, 1))}
+        disabled={page === 1}
+      >
+        Prev
+      </button>
+      <p>{page}</p>
+      <button
+        type="button"
+        onClick={() => setPage(prevPage => Math.min(prevPage + 1, totalPages))}
+        disabled={page >= totalPages}
+      >
+        Next
+      </button>
+    </div>
+  )
 
   const renderUI = () => {
     switch (apiStatus) {
@@ -36,17 +59,26 @@ const PopularMovies = () => {
         return <LoadingPage />
 
       case apiStatusConstants.success:
-        return <MovieGrid movies={movies} />
+        return (
+          <div>
+            <MovieGrid movies={movies} />
+          </div>
+        )
 
       case apiStatusConstants.failure:
-        return <p>Failed to load Upcoming movies. Please try again.</p>
+        return <p>Failed to load Popular movies. Please try again.</p>
 
       default:
         return null
     }
   }
 
-  return <div className="popular-movies-container">{renderUI()}</div>
+  return (
+    <div className="popular-movies-container">
+      {renderUI()}
+      {renderPagination()}
+    </div>
+  )
 }
 
 export default PopularMovies
